@@ -1,8 +1,9 @@
 // Dev tool: solo run where the creature is pulled next to the player. Captures the catch, the blackout and the respawn.
 import { createRequire } from 'node:module';
-const require = createRequire('/Users/jurek/openclaw/node_modules/');
+import { homedir } from 'node:os';
+const require = createRequire(process.env.PLAYWRIGHT_MODULES || `${homedir()}/openclaw/node_modules/`);
 const { chromium } = require('playwright-core');
-const OUT = '/Users/jurek/Downloads/Claude/Projects/LiDAR Point Cloud 001/Niepotrzebne/shots/';
+const OUT = decodeURIComponent(new URL('../shots/', import.meta.url).pathname);
 const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--use-angle=metal', '--enable-gpu', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required'] });
 const page = await browser.newPage({ viewport: { width: 1000, height: 620 } });
 const logs = [];

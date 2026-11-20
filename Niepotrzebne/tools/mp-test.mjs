@@ -1,6 +1,7 @@
 // Dev tool: two real clients in the dev realm. Checks presence, host election, shared scans, blue traces, creature sync and the win/new-round flow.
 import { createRequire } from 'node:module';
-const require = createRequire('/Users/jurek/openclaw/node_modules/');
+import { homedir } from 'node:os';
+const require = createRequire(process.env.PLAYWRIGHT_MODULES || `${homedir()}/openclaw/node_modules/`);
 const { chromium } = require('playwright-core');
 
 const TARGET = process.argv[2] || 'http://localhost:8641/?auto=1&play=1&realm=dev&dpr=1';
@@ -58,7 +59,7 @@ const blue = await A.evaluate(async () => {
   return { n, d: Math.hypot(p.x - R.x, p.z - R.z).toFixed(1) };
 });
 check('other player shows as blue trace', blue.n > 30, `${blue.n} blue dots at ${blue.d} m`);
-await A.screenshot({ path: '/Users/jurek/Downloads/Claude/Projects/LiDAR Point Cloud 001/Niepotrzebne/shots/mp-a.png' });
+await A.screenshot({ path: decodeURIComponent(new globalThis.URL('../shots/mp-a.png', import.meta.url).pathname) });
 
 const mons = async (p) => p.evaluate(() => window.__lidar.game.pack.list.slice(0, 2).map((m) => [m.f, +m.x.toFixed(1), +m.z.toFixed(1), m.state]));
 const hostPage = (await info(A)).host ? A : B, guest = hostPage === A ? B : A;

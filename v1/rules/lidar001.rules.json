@@ -1,0 +1,52 @@
+{
+  "$realm": {
+    ".read": "auth != null && ($realm === 'main' || $realm === 'dev')",
+    ".validate": "$realm === 'main' || $realm === 'dev'",
+    "round": {
+      ".write": "auth != null",
+      ".validate": "newData.hasChildren(['n', 'seed', 't0']) && newData.child('n').isNumber() && newData.child('seed').isNumber() && newData.child('t0').isNumber()",
+      "$o": { ".validate": "$o === 'n' || $o === 'seed' || $o === 't0'" }
+    },
+    "win": {
+      ".write": "auth != null && (!data.exists() || !newData.exists() || data.child('n').val() !== newData.child('n').val())",
+      ".validate": "newData.child('p').val() === auth.uid && newData.child('name').isString() && newData.child('name').val().length <= 16 && newData.child('n').isNumber() && newData.child('t').isNumber()",
+      "$o": { ".validate": "$o === 'p' || $o === 'name' || $o === 'n' || $o === 't'" }
+    },
+    "host": {
+      ".write": "auth != null",
+      ".validate": "newData.child('id').val() === auth.uid && newData.child('t').isNumber()",
+      "$o": { ".validate": "$o === 'id' || $o === 't'" }
+    },
+    "p": {
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.child('n').isString() && newData.child('n').val().length <= 16 && newData.child('t').isNumber() && newData.child('d').child('4').isNumber() && !newData.child('d').child('5').exists() && newData.child('s').child('5').isNumber() && !newData.child('s').child('6').exists()",
+        "$o": { ".validate": "$o === 'n' || $o === 'd' || $o === 's' || $o === 't'" }
+      }
+    },
+    "m": {
+      ".write": "auth != null",
+      ".validate": "newData.child('t').isNumber() && !newData.child('a').child('8').exists()",
+      "$o": { ".validate": "$o === 't' || $o === 'a'" }
+    },
+    "sc": {
+      ".write": "auth != null && !newData.exists()",
+      ".indexOn": ["t"],
+      "$id": {
+        ".write": "auth != null && (!newData.exists() || newData.child('p').val() === auth.uid)",
+        ".validate": "newData.child('t').isNumber() && newData.child('k').isNumber() && newData.child('f').isNumber() && newData.child('d').child('5').isNumber() && !newData.child('d').child('18').exists()",
+        "$o": { ".validate": "$o === 'p' || $o === 't' || $o === 'k' || $o === 'f' || $o === 'd'" }
+      }
+    },
+    "ev": {
+      ".write": "auth != null && !newData.exists()",
+      ".indexOn": ["t"],
+      "$id": {
+        ".write": "auth != null && (!newData.exists() || newData.child('p').val() === auth.uid)",
+        ".validate": "newData.child('t').isNumber() && newData.child('k').isString() && newData.child('k').val().length <= 8 && (!newData.child('n').exists() || (newData.child('n').isString() && newData.child('n').val().length <= 16))",
+        "$o": { ".validate": "$o === 'p' || $o === 't' || $o === 'k' || $o === 'm' || $o === 'n' || $o === 'x' || $o === 'z'" }
+      }
+    },
+    "$other": { ".validate": false }
+  }
+}

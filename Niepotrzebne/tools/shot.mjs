@@ -1,7 +1,8 @@
 // Dev tool: headless Chrome (real GPU through ANGLE/Metal) screenshot and console capture.
 // node shot.mjs <url> <out.png> [setupJS] [waitMs] [width] [height]
 import { createRequire } from 'node:module';
-const require = createRequire('/Users/jurek/openclaw/node_modules/');
+import { homedir } from 'node:os';
+const require = createRequire(process.env.PLAYWRIGHT_MODULES || `${homedir()}/openclaw/node_modules/`);
 const { chromium } = require('playwright-core');
 
 const [url, out = 'shot.png', setup = '', wait = '1500', w = '960', h = '600'] = process.argv.slice(2);

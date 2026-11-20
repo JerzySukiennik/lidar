@@ -1,8 +1,9 @@
 // Dev tool: real clicks and keys. PLAY, pointer lock, walking, stream and pulse, with the fake microphone Chrome provides in tests.
 import { createRequire } from 'node:module';
-const require = createRequire('/Users/jurek/openclaw/node_modules/');
+import { homedir } from 'node:os';
+const require = createRequire(process.env.PLAYWRIGHT_MODULES || `${homedir()}/openclaw/node_modules/`);
 const { chromium } = require('playwright-core');
-const OUT = '/Users/jurek/Downloads/Claude/Projects/LiDAR Point Cloud 001/Niepotrzebne/shots/';
+const OUT = decodeURIComponent(new URL('../shots/', import.meta.url).pathname);
 const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true, args: ['--use-angle=metal', '--enable-gpu', '--ignore-gpu-blocklist', '--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] });
 const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, permissions: ['microphone'] });
 const page = await ctx.newPage();
