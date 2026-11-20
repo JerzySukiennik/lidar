@@ -1,5 +1,7 @@
 # LiDAR Point Cloud 001
 
+Play: https://lidar.gzowo.fun
+
 A multiplayer horror game in total darkness. You only see what your scanner touches.
 Everyone who presses PLAY drops into the same facility, and every dot anyone scans is shared with everyone else.
 
