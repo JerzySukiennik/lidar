@@ -1,0 +1,5 @@
+.DS_Store
+Niepotrzebne/sound-raw/*.mp3
+Niepotrzebne/podglad/
+Niepotrzebne/shots/
+.env

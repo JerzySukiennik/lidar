@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LiDAR Point Cloud 001</title>
+<meta name="description" content="A horror game in total darkness. You only see what your scanner touches. It hears your scanner, your steps and your voice.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Cg fill='%23fff'%3E%3Ccircle cx='8' cy='9' r='1.6'/%3E%3Ccircle cx='15' cy='7' r='1.2'/%3E%3Ccircle cx='23' cy='10' r='1.6'/%3E%3Ccircle cx='10' cy='17' r='1.2'/%3E%3Ccircle cx='24' cy='19' r='1.2'/%3E%3Ccircle cx='8' cy='25' r='1.6'/%3E%3Ccircle cx='21' cy='26' r='1.2'/%3E%3C/g%3E%3Ccircle cx='16' cy='16' r='2.4' fill='%23ff2a1a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three-mesh-bvh": "https://cdn.jsdelivr.net/npm/three-mesh-bvh@0.8.3/build/index.module.js" } }
+</script>
+</head>
+<body>
+<canvas id="view"></canvas>
+
+<section id="title">
+  <div class="shade"></div>
+  <span class="corner tl">SCAN 001</span>
+  <span class="corner tr" id="online">&nbsp;</span>
+  <span class="corner bl">USE HEADPHONES. IT LISTENS TO YOUR MICROPHONE.</span>
+  <span class="corner br">LMB SCAN &middot; HOLD RMB PULSE &middot; SHIFT RUN &middot; C CROUCH</span>
+  <div class="mark">
+    <h1><span>LiDAR</span><span>Point Cloud</span><span class="num">001</span></h1>
+    <p class="tag">IT HEARS YOU</p>
+    <button id="play" type="button"><i></i><b>PLAY</b></button>
+    <label class="call">OPERATOR <input id="name" maxlength="10" spellcheck="false" autocomplete="off" aria-label="Operator name"></label>
+    <p class="note" id="note"></p>
+  </div>
+</section>
+
+<section id="hud" hidden>
+  <div id="cross"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="17"/></svg><i></i></div>
+  <div id="level"><b></b><span></span></div>
+  <div id="mic"><span>MIC</span><i><em></em></i></div>
+  <div id="hint">
+    <p>LMB SCAN &middot; HOLD RMB PULSE &middot; WHEEL BEAM WIDTH</p>
+    <p>FIND THE STAIRS. REACH THE BOTTOM.</p>
+    <p>IT HEARS YOUR SCANNER, YOUR STEPS AND YOUR VOICE.</p>
+  </div>
+  <div id="toast"></div>
+</section>
+
+<section id="dead"><b>SIGNAL LOST</b><span>RETURNING TO LEVEL 01</span></section>
+<section id="win"><b></b><span></span></section>
+<section id="pause"><b>CLICK TO BEGIN</b><span>WASD MOVE &middot; SHIFT RUN &middot; C CROUCH<br>LMB SCAN &middot; HOLD RMB PULSE &middot; WHEEL BEAM WIDTH</span></section>
+<div id="fade"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
